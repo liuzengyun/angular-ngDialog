@@ -1,0 +1,26 @@
+1. 首先在加载angular的前提下加载ngDialog所需要的css和js
+    <!-- ngDialog css -->
+    <link rel="stylesheet" href="../vendor/angularJS/ngDialog/css/ngDialog.css" />
+    <link rel="stylesheet" href="../vendor/angularJS/ngDialog/css/ngDialog-theme-default.css" />
+    <!-- ngDialog js -->
+    <script src="../vendor/angularJS/ngDialog/js/ngDialog.js"></script>
+2. 依赖注入 
+  angular.module("myapp", ["ngDialog"]);
+  
+3. 控制器里面加载服务
+  myapp.controller("myCtrl", function($scope, ngDialog) {
+    (1) 最简单的输出框
+      ngDialog.open({
+        template: '<p class="text-center" style="margin-top: 10px">' + data.message + '</p>',
+        plain: true
+      });
+      
+  （2）又关闭事件
+      var dialog = ngDialog.open({
+        template: '<p class="text-center" style="margin-top: 10px">' + data.message + '</p>',
+        plain: true
+      });
+      dialog.closePromise.then(function (data) {
+        window.location.reload();
+      });
+  }
